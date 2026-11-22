@@ -1,0 +1,167 @@
+html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Глава 1 — Глаз дракона</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Стили специально для страницы чтения */
+        body {
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Верхняя панель с кнопкой назад */
+        .reader-header {
+            width: 100%;
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .back-btn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            background: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-btn:hover {
+            background: #555;
+        }
+
+        /* Контейнер для картинок */
+        .reader-content {
+            width: 100%;
+            max-width: 800px; /* Чтобы на компьютере картинки не были огромными */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2px; /* Минимальный зазор между страницами */
+            padding-bottom: 50px;
+        }
+
+        .reader-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background-color: #1e1e1e; /* Фон, пока картинка грузится */
+        }
+
+        /* Кнопка "Наверх" */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e53935; /* Красный акцент под "Глаз дракона" */
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none; /* Скрыта, пока не прокрутили вниз */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 20;
+        }
+
+        .scroll-top:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Верхняя панель -->
+    <div class="reader-header">
+        <a href="index.html" class="back-btn">← Назад к главам</a>
+    </div>
+
+    <!-- Здесь твои картинки. Меняй src на свои файлы -->
+    <div class="reader-content" id="pages-container">
+        
+        <!-- Страница 1 -->
+        <img src="https://i.postimg.cc/7Zc7BGJX/gl-1-str-1.png" alt="Страница 1" loading="lazy">
+        
+        <!-- Страница 2 -->
+        <img src="https://i.postimg.cc/L87fyYgr/Glava-stranica.png" alt="Страница 2" loading="lazy">
+        
+        <!-- Страница 3 -->
+        <img src="https://i.postimg.cc/nh57dj9R/Glava-stranica-(1).png" alt="Страница 3" loading="lazy">
+
+        <!-- Чтобы добавить еще страницу, просто скопируй строку ниже и поменяй номер -->
+        <!-- <img src="images/glava1_page4.jpg" alt="Страница 4" loading="lazy"> -->
+
+    </div>
+  
+    <!-- Кнопка "Наверх" -->
+    <button class="scroll-top" id="scrollTopBtn" title="Наверх">↑</button>
+
+    <script>
+        // 1. Плавная прокрутка вверх
+        const scrollBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            // Показываем кнопку, если прокрутили больше 300px
+            if (window.scrollY > 300) {
+                scrollBtn.style.display = 'block';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 2. Свайп влево/вправо для перехода между главами (опционально)
+        // Если захочешь, чтобы свайп вел на следующую главу, раскомментируй код ниже
+        /*
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchStartX - touchEndX > 50) {
+                // Свайп влево — на следующую главу (например, glava2.html)
+                // window.location.href = 'glava2.html';
+                console.log('Свайп влево');
+            }
+            if (touchEndX - touchStartX > 50) {
+                // Свайп вправо — на предыдущую главу или назад
+                // window.location.href = 'index.html';
+                console.log('Свайп вправо');
+            }
+        }
+        */
+    </script>
+
+</body>
+</html>
