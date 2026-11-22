@@ -135,3 +135,13 @@ h1 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+.reader-content img {
+    width: 100%;           /* Занимает всю ширину экрана телефона */
+    max-width: 690px;      /* НЕ ДАЕТ картинке растягиваться шире 690px */
+    height: auto;          /* Сохраняет пропорции */
+    display: block;
+    margin: 0 auto;        /* Центрирует на больших экранах */
+    
+    /* Сглаживание для четкости */
+    image-rendering: -webkit-optimize-contrast; 
+}
